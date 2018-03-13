@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+{% if messages%}
+    {% for message in messages%}
+    <div class = "alert {% if message.tags %}alert-{% if message.tags == 'error' %}danger{%else%}{{message.tags}}{%endif%}"{%endif%}>{{message}}</div>
+    {%endfor%}
+{%endif%}
+
+<head>
+    <title>Moodle-Login</title>
+    <style>
+        .body{
+  padding: 20px;
+}
+.container{
+  width: 40%;
+  margin : 0px auto;
+}
+.container input{
+  display : block;
+  border: 1px solid black;
+  border-radius: 5px;
+  outline: none;
+  width:100%;
+  padding : 5%;
+  font-size: 150%;
+}
+.container button{
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 5%;
+  font-size: 150%;
+  width: 100%;
+  text-align: center;
+  background-color: grey;
+}
+.container button:hover{
+  background-color:tomato;
+}
+    </style>
+
+</head>
+<body style="font-family: 'Mukta Vaani', sans-serif;">
+{% include 'course/header.html'%}
+<div class="container">
+
+    <form method = "POST" action = "auth/"> {% csrf_token %}
+
+        <table cellspacing="10" cellpadding="10" style="font-size:20px">
+            <th><h1>Login:</h1></th>
+            <tr>
+                <td style="padding:10px">Username </td><td style="padding:10px">:</td> <td style="padding:10px"><input type = "text" id = "username" name = "username" placeholder="Username"/></td><br>
+                </tr>
+        <tr>
+            <td style="padding:10px">Password</td> <td style="padding:10px">:</td><td style="padding:10px"> <input type = "password" id = "password" name = "password" placeholder = "password"/></td><br>
+        </tr>
+        </table>
+        <br>
+        <button id = "sumbit" name = "submit">login</button>
+    </form>
+    </div>
+</body>
+</html>

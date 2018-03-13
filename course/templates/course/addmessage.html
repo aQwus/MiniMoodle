@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+{% include 'course/message.html' %}
+<head>
+    <meta charset="UTF-8">
+    <title>{{user.username}}</title>
+    <link href="https://fonts.googleapis.com/css?family=Russo+One" rel="stylesheet">
+    <style>
+        .nav{
+            background-color:#FFEFD5;
+            }
+        .nav-list li{
+            display:inline-block;
+            }
+    </style>
+</head>
+<body style="font-family: 'Mukta Vaani', sans-serif;">
+    {% include 'course/header.html' %}
+    <div class = "nav">
+        <a href="/" class = "navbar-brand">Moodle</a>
+
+    <div>
+        <ul class = "nav-list">
+            <li><a href="/loggedin/">{{user.username}}</a></li>
+            <!--<li><a href = "/account/register">Register</a></li>-->
+            <li><a href = "/logout">Logout</a></li>
+            <li class="active"><a href = "#">Messages</a></li>
+        </ul>
+    </div>
+</div>
+
+<style>
+    th{
+        padding:10px;
+    }
+    td{
+        padding:10px;
+    }
+</style>
+    {% if messagesc%}
+    <h1>&nbsp;Sent messages:</h1>
+    <table style="width:100%;font-size:20px;">
+        <tr>
+            <th>Subject</th>
+            <th>Message</th>
+            <th>Time</th>
+            <th>Date</th>
+        </tr>
+        {% for message in messagesc %}
+
+        <tr>
+                <td style="padding:10px;width:20%">
+                    {{message.subject}}
+                </td>
+
+
+                <td style="width:60%">
+                    {{message.msg}}
+                </td>
+                <td style="width:10%">
+                    {{message.time}}
+                </td>
+                <td style="width:10%">
+                    {{message.date}}
+                </td>
+
+            </tr>
+        {% endfor %}
+    </table>
+    {% endif %}
+
+    <form method = "POST" action = "/sendmessage/"> {% csrf_token %}
+        <table  style="width:60%;font-size:20px;height:400px">
+            <th><h1>&nbsp;New Message :</h1></th>
+            <tr>
+                <td>Course</td><td>:</td><td><input value="{{course}}" readonly id="course" name="course"/></td> <br>
+            </tr>
+            <tr>
+                <td>Title</td><td>:</td> <td><input type = "text" id="title" name="title"></td><br>
+            </tr>
+            <tr>
+                <td>Message</td><td>:</td> <td><textarea type="text" id="messsage" name="message" style="height:80px" cols="40"
+                                                         rows="5"></textarea></td><br>
+            </tr>
+
+        </table>
+        <button type = "submit" id="submit">Send</button>
+    </form>
+
+</body>
+</html>

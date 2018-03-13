@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{student.username}}</title>
+    <style>
+        .nav{
+            background-color:#FFEFD5;
+            }
+        .nav-list li{
+            display:inline-block;
+            }
+    </style>
+    {% include 'course/message.html' %}
+</head>
+<body style="font-family: 'Mukta Vaani', sans-serif;">
+    {% include 'course/header.html' %}
+    <div class = "nav">
+        <a href="/">Moodle</a>
+
+    <div>
+        <ul class = "nav-list">
+            <li><a href="/loggedin/">{{student.username}}</a></li>
+            <!--<li><a href = "/account/register">Register</a></li>-->
+            <li><a href = "/logout">Logout</a></li>
+            <li class="active"><a href = "/studentmsg">Message</a></li>
+        </ul>
+    </div>
+</div>
+
+    <h1 style="text-align:center;font-size:50px;font-family: 'Russo One', sans-serif;"> Messages</h1>
+    {% for course in courses %}
+        <h2>&nbsp;{{course.course.name}}</h2>
+
+
+    <table style="width:100%;font-size:20px;">
+
+        <tr>
+            <th>Subject</th>
+            <th>Message</th>
+            <th>Time</th>
+            <th>Date</th>
+        </tr>
+        {% for message in course.message %}
+
+        <tr>
+                <td style="padding:10px;width:20%">
+                    {{message.subject}}
+                </td>
+
+
+                <td style="width:60%">
+                    {{message.msg}}
+                </td>
+                <td style="width:10%">
+                    {{message.time}}
+                </td>
+                <td style="width:10%">
+                    {{message.date}}
+                </td>
+
+            </tr>
+        {% endfor %}
+    </table>
+
+
+
+
+    {% endfor %}
+ </body>
+</html>

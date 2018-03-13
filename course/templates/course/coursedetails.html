@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{course.name}}</title>
+    <style>
+        .nav{
+            background-color:#FFEFD5;
+            }
+        .nav-list li{
+            display:inline-block;
+            }
+    </style>
+    {% include 'course/message.html' %}
+</head>
+<body style="font-family: 'Mukta Vaani', sans-serif;">
+    {% include 'course/header.html' %}
+    <div class = "nav">
+        <a href="" class = "navbar-brand">Moodle</a>
+
+    <div>
+        <ul class = "nav-list">
+            <li><a href="/loggedin/">{{student.username}}</a></li>
+            <!--<li><a href = "/account/register">Register</a></li>-->
+            <li><a href = "/logout">Logout</a></li>
+            <li><a href = "/studentmsg">Message</a></li>
+            <li class="active"><a href = "#">{{course.name}}</a></li>
+        </ul>
+    </div>
+</div>
+<span style="font-size:20px;">
+    Name : {{course.name}}<br />
+    Prof : {{course.teacher.user.username}}<br />
+    info : {{course.Inf}}<br />
+</span>
+    {% if a == "" %}
+    <button ><a href = "addcs?course={{course.name}}" style="text-decoration: none; color:black">Take Course!</a></button>
+    {% else %}
+    <h3>Course already taken!!</h3>
+    {% endif %}
+
+</body>
+</html>

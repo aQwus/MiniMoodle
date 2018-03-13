@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+{% include 'course/message.html' %}
+<head>
+    <meta charset="UTF-8">
+    <title>{{user.username}}</title>
+    <link href="https://fonts.googleapis.com/css?family=Russo+One" rel="stylesheet">
+    <style>
+        .nav{
+            background-color:#FFEFD5;
+            }
+        .nav-list li{
+            display:inline-block;
+            }
+    </style>
+</head>
+<body style="font-family: 'Mukta Vaani', sans-serif;">
+    {% include 'course/header.html' %}
+    <div class = "nav">
+        <a href="/" class = "navbar-brand">Moodle</a>
+
+    <div>
+        <ul class = "nav-list">
+            <li class="active"><a href="/loggedin/">{{user.username}}</a></li>
+            <!--<li><a href = "/account/register">Register</a></li>-->
+            <li><a href = "/logout">Logout</a></li>
+        </ul>
+</div>
+</div>
+    <h1 style="text-align:center;font-size:50px;font-family: 'Russo One', sans-serif;"> Welcome!!</h1>
+    <h1>&nbsp;Your Courses For Next Semister :</h1>
+    <ol>
+        <table style="font-size:20px;width:60%">
+        {% for c in mycourses %}
+
+            <tr><td><li>{{c.name}}</li></td><td><a href="/deletetc?course={{c.name}}">Delete</a></td> <td><a href = "/addmessage?course={{c.name}}"> Send message</a></td></tr>
+
+        {% endfor %}
+        </table>
+    </ol>
+    <br>
+    <br>
+    <br>
+    <br>
+
+
+    <form method = "POST" action = "addcourset/"> {% csrf_token %}
+        <table  cellspacing="10" cellpadding="10" style="width:60%;font-size:20px">
+            <th><h1>&nbsp;Add A Course :</h1></th>
+            <tr>
+                <td>Name</td><td>:</td><td><input id = "name" name = "name" type = "text" placeholder="Course Name"/></td> <br>
+            </tr>
+            <tr>
+                <td>Info</td><td>:</td> <td><input id = "info" name = "info" type = "text" placeholder="Information"/></td><br>
+            </tr>
+
+        </table>
+        <button type = "submit" id="submit">ADD</button>
+    </form>
+
+</body>
+</html>

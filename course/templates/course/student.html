@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{student.username}}</title>
+    <style>
+        .nav{
+            background-color:#FFEFD5;
+            }
+        .nav-list li{
+            display:inline-block;
+            }
+    </style>
+</head>
+<body style="font-family: 'Mukta Vaani', sans-serif;">
+{% include 'course/header.html'%}
+<div class = "nav">
+        <a href="/login" class = "navbar-brand">Moodle</a>
+
+    <div>
+        <ul class = "nav-list">
+            <li><a href="/loggedin/">{{student.username}}</a></li>
+            <!--<li><a href = "/account/register">Register</a></li>-->
+            <li><a href = "/logout">Logout</a></li>
+            <li><a href = "/studentmsg">Message</a></li>
+        </ul>
+    </div>
+</div>
+    <h1 style="text-align:center;font-size:50px;font-family: 'Russo One', sans-serif;"> Welcome!!</h1>
+    <h1>&nbsp;Your Courses For Next Semister :</h1>
+    <ol>
+        <table style="font-size:20px;width:60%">
+        {% for c in mycourses %}
+
+            <tr><td><li>{{c.course.name}}</li></td><td><a href="deletecourse?course={{c.course.name}}">Delete</a></td> </tr>
+
+        {% endfor %}
+        </table>
+    </ol>
+
+    <h1>&nbsp;Add A Course:</h1>
+
+Courses:
+
+
+        <!--<ul class="dropdown-menu" aria-labelledby="dropdownMenu2">-->
+        <ul>
+            <form>
+                {% if courses %}
+                {% for course in courses %}
+                <li><a href = "selectcourse?course={{course.name}}">{{course.name}}</a></li>
+
+                {% endfor %}
+                {% endif %}
+
+            </form>
+        </ul>
+
+    </div>
+
+ </body>
+</html>
